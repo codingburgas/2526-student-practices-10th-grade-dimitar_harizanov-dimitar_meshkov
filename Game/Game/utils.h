@@ -5,7 +5,8 @@
 using namespace std;
 
 enum AppState {
-	Menu,
+	MENU,
+	EXIT,
 };
 
 struct ButtonProps {
