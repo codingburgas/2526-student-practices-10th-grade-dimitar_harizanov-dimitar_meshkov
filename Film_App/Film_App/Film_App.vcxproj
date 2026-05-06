@@ -125,9 +125,13 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Film.h" />
+    <ClInclude Include="FilmCatalogue.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
