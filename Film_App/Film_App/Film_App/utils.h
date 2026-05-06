@@ -4,9 +4,6 @@
 #include <vector>
 using namespace std;
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  App-wide enums
-// ─────────────────────────────────────────────────────────────────────────────
 enum Appstate {
     EXIT,
     MENU,
@@ -28,9 +25,6 @@ enum PositionProperty {
     ABSOLUTE,
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Shared UI structs
-// ─────────────────────────────────────────────────────────────────────────────
 struct ButtonProps {
     Position         pos         = CENTER;
     PositionProperty posProp     = NONE;
@@ -45,9 +39,6 @@ struct ButtonProps {
     Appstate         nextState   = MENU;
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Global palette (shared across all screens)
-// ─────────────────────────────────────────────────────────────────────────────
 namespace Palette {
     const Color BG         = {  10,  10,  22, 255 };
     const Color NAV        = {   8,   8,  18, 255 };

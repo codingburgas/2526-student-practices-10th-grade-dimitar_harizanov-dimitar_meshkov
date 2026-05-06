@@ -3,9 +3,6 @@
 #include <algorithm>
 using namespace std;
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Constructor
-// ─────────────────────────────────────────────────────────────────────────────
 Menu::Menu(const vector<Film>& catalogue)
     : films(catalogue),
     hoveredCard(-1),
