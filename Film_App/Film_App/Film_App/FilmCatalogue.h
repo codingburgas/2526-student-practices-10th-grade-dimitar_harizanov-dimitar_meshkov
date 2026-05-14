@@ -24,6 +24,19 @@ namespace FilmCatalogue {
                 "Thriller", "Christopher Nolan", "2h 28m",
                 8.8f, { 30, 80, 130, 255 }
             },
+            {
+                "The Matrix",
+                "A hacker discovers reality is a simulation and joins a rebellion.",
+                "Sci-Fi", "The Wachowskis", "2h 16m",
+				8.7f, { 10, 50, 100, 255 }
+            },
+            {
+                "Shutter Island",
+                "A U.S. Marshal investigates the disappearance of a murderer from a hospital for the criminally insane.",
+                "Mystery / Thriller", "Martin Scorsese", "2h 18m",
+                8.2f, { 60, 70, 65, 180}
+
+}
         };
     }
 }

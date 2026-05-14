@@ -151,7 +151,7 @@ void Menu::DrawGrid(int screenW, int screenH)
         int cy = startY + row * (CARD_H + CARD_GAP);
 
         if (cy + CARD_H < NAVBAR_H) continue;
-        if (cy > screenH)           continue;
+        if (cy > screenH + CARD_H) continue;
 
         DrawCard(films[i], cx, cy, hoveredCard == i);
     }

@@ -11,3 +11,4 @@ struct Film {
     float  rating;       
     Color  posterColor;  
 };
+     
