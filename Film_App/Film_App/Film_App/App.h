@@ -3,6 +3,8 @@
 #include <raylib.h>
 #include "utils.h"
 #include "Menu.h"
+#include "Detail.h"
+#include "Booking.h"
 using namespace std;
 
 class App {
