@@ -2,19 +2,26 @@
 #include "FilmCatalogue.h"
 
 App::App()
-    : state(MENU), menu(nullptr)
+    : state(MENU), menu(nullptr), detail(nullptr), booking(nullptr),
+    selectedFilmIdx(-1)
 {
-    menu = new Menu(FilmCatalogue::GetAll());
+    catalogue = FilmCatalogue::GetAll();
+    menu = new Menu(catalogue);
+    detail = new Detail();
+    booking = new Booking();
 }
 
 App::~App()
 {
     delete menu;
+    delete detail;
+    delete booking;
 }
 
 void App::Display()
 {
-    InitWindow(1920, 1080, "CineBook");
+    SetConfigFlags(FLAG_WINDOW_MAXIMIZED);
+    InitWindow(1280, 720, "CineBook");
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -41,9 +48,13 @@ void App::Update()
         break;
 
     case DETAIL:
+        detail->Update();
+        HandleStateChange(detail->GetNextState());
         break;
 
     case BOOKING:
+        booking->Update();
+        HandleStateChange(booking->GetNextState());
         break;
 
     case EXIT:
@@ -55,37 +66,28 @@ void App::Draw()
 {
     switch (state)
     {
-    case MENU:
-        menu->Draw();
-        break;
-
-    case DETAIL:
-        DrawText(" ",
-                 GetScreenWidth() / 2 - 160, GetScreenHeight() / 2, 24,
-                 Palette::TEXT_HI);
-        DrawText(" ",
-                 GetScreenWidth() / 2 - 120, GetScreenHeight() / 2 + 40, 16,
-                 Palette::TEXT_DIM);
-        if (IsKeyPressed(KEY_ESCAPE))
-            state = MENU;
-        break;
-
-    case BOOKING:
-        DrawText("",
-                 GetScreenWidth() / 2 - 160, GetScreenHeight() / 2, 24,
-                 Palette::TEXT_HI);
-        if (IsKeyPressed(KEY_ESCAPE))
-            state = MENU;
-        break;
-
-    case EXIT:
-        break;
+    case MENU:    menu->Draw();    break;
+    case DETAIL:  detail->Draw();  break;
+    case BOOKING: booking->Draw(); break;
+    case EXIT:    break;
     }
 }
 
 void App::HandleStateChange(Appstate newState)
 {
     if (newState == state) return;
+
+    if (newState == DETAIL && state == MENU)
+    {
+        selectedFilmIdx = menu->GetSelectedFilm();
+        if (selectedFilmIdx >= 0 && selectedFilmIdx < (int)catalogue.size())
+            detail->SetFilm(catalogue[selectedFilmIdx]);
+    }
+    else if (newState == BOOKING && state == DETAIL)
+    {
+        if (selectedFilmIdx >= 0 && selectedFilmIdx < (int)catalogue.size())
+            booking->SetFilm(catalogue[selectedFilmIdx]);
+    }
 
     state = newState;
 }

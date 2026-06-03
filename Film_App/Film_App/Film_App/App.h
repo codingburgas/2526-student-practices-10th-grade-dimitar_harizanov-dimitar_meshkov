@@ -15,8 +15,11 @@ public:
     void Draw();     
 private:
     Appstate state;
-
     Menu* menu;
+    Detail* detail;
+    Booking* booking;
+    vector<Film> catalogue;
+    int selectedFilmIdx;
 
     void HandleStateChange(Appstate newState);
 };
