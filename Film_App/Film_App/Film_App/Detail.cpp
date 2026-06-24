@@ -18,6 +18,8 @@ void Detail::SetFilm(const Film& f)
 
 void Detail::Update()
 {
+    nextState = DETAIL;
+
     Vector2 mouse = GetMousePosition();
     int     screenW = GetScreenWidth();
     int     screenH = GetScreenHeight();

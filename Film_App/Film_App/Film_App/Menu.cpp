@@ -27,6 +27,8 @@ int Menu::GridStartY() const
 
 void Menu::Update()
 {
+    nextState = MENU;
+
     int screenW = GetScreenWidth();
     int screenH = GetScreenHeight();
     int cols = CalcCols(screenW);
