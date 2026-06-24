@@ -2,10 +2,11 @@
 #include "FilmCatalogue.h"
 
 App::App()
-    : state(MENU), menu(nullptr), detail(nullptr), booking(nullptr),
+    : state(LOGIN), login(nullptr), menu(nullptr), detail(nullptr), booking(nullptr),
     selectedFilmIdx(-1)
 {
     catalogue = FilmCatalogue::GetAll();
+    login = new Login();
     menu = new Menu(catalogue);
     detail = new Detail();
     booking = new Booking();
@@ -13,6 +14,7 @@ App::App()
 
 App::~App()
 {
+    delete login;
     delete menu;
     delete detail;
     delete booking;
@@ -42,6 +44,11 @@ void App::Update()
 {
     switch (state)
     {
+    case LOGIN:
+        login->Update();
+        HandleStateChange(login->GetNextState());
+        break;
+
     case MENU:
         menu->Update();
         HandleStateChange(menu->GetNextState());
@@ -66,6 +73,7 @@ void App::Draw()
 {
     switch (state)
     {
+    case LOGIN:   login->Draw();   break;
     case MENU:    menu->Draw();    break;
     case DETAIL:  detail->Draw();  break;
     case BOOKING: booking->Draw(); break;

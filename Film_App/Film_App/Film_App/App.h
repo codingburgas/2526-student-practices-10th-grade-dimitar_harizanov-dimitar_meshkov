@@ -2,6 +2,7 @@
 #include <iostream>
 #include <raylib.h>
 #include "utils.h"
+#include "Login.h"
 #include "Menu.h"
 #include "Detail.h"
 #include "Booking.h"
@@ -17,6 +18,7 @@ public:
     void Draw();     
 private:
     Appstate state;
+    Login* login;
     Menu* menu;
     Detail* detail;
     Booking* booking;

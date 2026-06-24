@@ -6,6 +6,7 @@ using namespace std;
 
 enum Appstate {
     EXIT,
+    LOGIN,
     MENU,
     DETAIL,
     BOOKING,
