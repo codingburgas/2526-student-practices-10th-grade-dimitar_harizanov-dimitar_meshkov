@@ -6,7 +6,6 @@
 #include "utils.h"
 using namespace std;
 
-
 class Menu {
 public:
     Menu(const vector<Film>& catalogue);
@@ -33,7 +32,7 @@ private:
     static const int CARD_GAP = 26;
     static const int CARD_POSTER = 185;
     static const int SIDE_PAD = 48;
-    static const int SECTION_Y = NAVBAR_H + 26; 
+    static const int SECTION_Y = NAVBAR_H + 26;
 
     void DrawNavbar(int screenW);
     void DrawSectionHeader(int screenW);
@@ -44,5 +43,5 @@ private:
         int totalGridH, int gridAreaH);
 
     int  CalcCols(int screenW) const;
-    int  GridStartY()          const;        
+    int  GridStartY()          const;
 };

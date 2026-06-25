@@ -22,7 +22,7 @@ private:
     bool   passwordActive;
     bool   confirmActive;
     bool   hovSignup;
-    bool   hovLogin;    // "Already have an account?" link
+    bool   hovLogin;
     bool   showError;
     string errorMsg;
 

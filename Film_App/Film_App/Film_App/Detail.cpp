@@ -114,7 +114,6 @@ void Detail::Draw()
     DrawText(lbl, btnX + btnW / 2 - lblW / 2, btnY + 16, 20, btnTxt);
 }
 
-
 void Detail::DrawStars(float rating, int x, int y, int size)
 {
     float filled = (rating / 10.0f) * 5.0f;
@@ -129,7 +128,7 @@ void Detail::DrawStars(float rating, int x, int y, int size)
             45.0f, c);
     }
 }
-//Pomogni malko ,che ne sym sigoren dali e dobro napisan 
+
 void Detail::DrawWrappedText(const string& text, int x, int y,
     int maxW, int fontSize, Color col)
 {

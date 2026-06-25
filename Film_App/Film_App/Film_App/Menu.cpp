@@ -249,7 +249,7 @@ void Menu::DrawStars(float rating, int x, int y, int size)
 void Menu::DrawScrollBar(int screenW, int screenH,
     int totalGridH, int gridAreaH)
 {
-    if (totalGridH <= gridAreaH) return;     
+    if (totalGridH <= gridAreaH) return;
 
     float ratio = (float)gridAreaH / totalGridH;
     int   barH = (int)(gridAreaH * ratio);

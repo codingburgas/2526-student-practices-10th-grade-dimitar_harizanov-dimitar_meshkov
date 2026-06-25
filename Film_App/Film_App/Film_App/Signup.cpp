@@ -55,14 +55,12 @@ void Signup::Update()
         if (IsKeyPressed(KEY_TAB)) { confirmActive = false; usernameActive = true; }
     }
 
-    // Sign Up button
     int btnW = FIELD_W, btnH = 48;
     int btnX = boxX;
     int btnY = confY + 74;
     Rectangle signupBtn = { (float)btnX, (float)btnY, (float)btnW, (float)btnH };
     hovSignup = CheckCollisionPointRec(mouse, signupBtn);
 
-    // "Log In" link
     int linkY = btnY + btnH + 24;
     const char* linkTxt = "Already have an account?  Log In";
     int linkW = MeasureText(linkTxt, 14);
@@ -102,7 +100,6 @@ void Signup::Draw()
     int passY = userY + 64;
     int confY = passY + 64;
 
-    // Logo
     int logoY = userY - 140;
     DrawRectangle(screenW / 2 - 16, logoY, 32, 32, Palette::ACCENT);
     DrawText("C", screenW / 2 - 8, logoY + 6, 22, WHITE);
@@ -119,7 +116,6 @@ void Signup::Draw()
     DrawField(boxX, passY, password,        passwordActive, true,  "Password");
     DrawField(boxX, confY, confirmPassword, confirmActive,  true,  "Confirm Password");
 
-    // Sign Up button
     int btnW = FIELD_W, btnH = 48;
     int btnX = boxX;
     int btnY = confY + 74;
@@ -131,7 +127,6 @@ void Signup::Draw()
     int         lblW = MeasureText(lbl, 18);
     DrawText(lbl, btnX + btnW / 2 - lblW / 2, btnY + 14, 18, btnTxt);
 
-    // Error
     if (showError)
     {
         int errW = MeasureText(errorMsg.c_str(), 13);
@@ -139,7 +134,6 @@ void Signup::Draw()
             screenW / 2 - errW / 2, btnY + btnH + 14, 13, Palette::ACCENT);
     }
 
-    // Log In link
     int linkY = btnY + btnH + 42;
     const char* linkTxt = "Already have an account?  Log In";
     int linkW = MeasureText(linkTxt, 14);

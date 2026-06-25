@@ -20,7 +20,7 @@ private:
     bool   usernameActive;
     bool   passwordActive;
     bool   hovLogin;
-    bool   hovSignup;   // "Sign up" link
+    bool   hovSignup;
     bool   showError;
     string errorMsg;
 

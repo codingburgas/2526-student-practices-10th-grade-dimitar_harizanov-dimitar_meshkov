@@ -28,14 +28,12 @@ void AuthPrompt::Update()
     Rectangle loginRect  = { (float)loginBtnX,  (float)btnY, (float)BTN_W, (float)BTN_H };
     Rectangle signupRect = { (float)signupBtnX, (float)btnY, (float)BTN_W, (float)BTN_H };
 
-    // X / cancel button (top-right of box)
     Rectangle cancelRect = { (float)(boxX + BOX_W - 36), (float)(boxY + 10), 26.0f, 26.0f };
 
     hovLogin  = CheckCollisionPointRec(mouse, loginRect);
     hovSignup = CheckCollisionPointRec(mouse, signupRect);
     hovCancel = CheckCollisionPointRec(mouse, cancelRect);
 
-    // Click outside box -> go back to detail
     bool clickedOutside = IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
         !CheckCollisionPointRec(mouse, { (float)boxX, (float)boxY, (float)BOX_W, (float)BOX_H });
 
@@ -52,7 +50,6 @@ void AuthPrompt::Draw()
     int screenW = GetScreenWidth();
     int screenH = GetScreenHeight();
 
-    // Dim the background
     DrawRectangle(0, 0, screenW, screenH, { 0, 0, 0, 160 });
 
     const int BOX_W = 440;
@@ -60,17 +57,14 @@ void AuthPrompt::Draw()
     int boxX = screenW / 2 - BOX_W / 2;
     int boxY = screenH / 2 - BOX_H / 2;
 
-    // Card
     DrawRectangle(boxX, boxY, BOX_W, BOX_H, Palette::CARD);
-    DrawRectangle(boxX, boxY, BOX_W, 4, Palette::ACCENT);      // top accent bar
+    DrawRectangle(boxX, boxY, BOX_W, 4, Palette::ACCENT);
     DrawRectangleLines(boxX, boxY, BOX_W, BOX_H, { 40, 40, 65, 255 });
 
-    // Title
     const char* title = "Sign in to Book";
     int titleW = MeasureText(title, 22);
     DrawText(title, boxX + BOX_W / 2 - titleW / 2, boxY + 30, 22, Palette::TEXT_HI);
 
-    // Subtitle
     const char* sub = "You need an account to book tickets.";
     int subW = MeasureText(sub, 14);
     DrawText(sub, boxX + BOX_W / 2 - subW / 2, boxY + 66, 14, Palette::TEXT_MID);
@@ -79,7 +73,6 @@ void AuthPrompt::Draw()
     int sub2W = MeasureText(sub2, 14);
     DrawText(sub2, boxX + BOX_W / 2 - sub2W / 2, boxY + 88, 14, Palette::TEXT_MID);
 
-    // Divider
     DrawRectangle(boxX + 30, boxY + 118, BOX_W - 60, 1, { 40, 40, 62, 255 });
 
     const int BTN_W = 180;
@@ -88,7 +81,6 @@ void AuthPrompt::Draw()
     int signupBtnX = boxX + BOX_W - 30 - BTN_W;
     int btnY       = boxY + BOX_H - 80;
 
-    // Log In button (filled)
     Color loginBg  = hovLogin  ? Palette::ACCENT : Color{ 45, 18, 25, 255 };
     Color loginTxt = hovLogin  ? WHITE : Palette::ACCENT;
     DrawRectangle(loginBtnX, btnY, BTN_W, BTN_H, loginBg);
@@ -96,7 +88,6 @@ void AuthPrompt::Draw()
     int         llblW = MeasureText(llbl, 17);
     DrawText(llbl, loginBtnX + BTN_W / 2 - llblW / 2, btnY + 16, 17, loginTxt);
 
-    // Sign Up button (outline)
     Color signupBorder = hovSignup ? Palette::ACCENT : Palette::TEXT_DIM;
     Color signupTxt    = hovSignup ? Palette::ACCENT : Palette::TEXT_MID;
     DrawRectangle(signupBtnX, btnY, BTN_W, BTN_H, Palette::CARD);
@@ -105,7 +96,6 @@ void AuthPrompt::Draw()
     int         slblW = MeasureText(slbl, 17);
     DrawText(slbl, signupBtnX + BTN_W / 2 - slblW / 2, btnY + 16, 17, signupTxt);
 
-    // Cancel X
     Color xCol = hovCancel ? Palette::ACCENT : Palette::TEXT_DIM;
     DrawText("x", boxX + BOX_W - 28, boxY + 14, 18, xCol);
 }

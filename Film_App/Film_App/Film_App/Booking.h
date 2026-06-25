@@ -24,7 +24,7 @@ private:
 
     int  selectedDate;
     int  selectedTime;
-    vector<bool> seats;   
+    vector<bool> seats;
 
     bool  confirmed;
     float confirmTimer;

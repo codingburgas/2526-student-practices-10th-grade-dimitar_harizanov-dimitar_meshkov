@@ -68,14 +68,12 @@ void Login::Update()
         if (IsKeyPressed(KEY_TAB)) { passwordActive = false; usernameActive = true; }
     }
 
-    // Log In button
     int btnW = FIELD_W, btnH = 48;
     int btnX = boxX;
     int btnY = passY + 80;
     Rectangle loginBtn = { (float)btnX, (float)btnY, (float)btnW, (float)btnH };
     hovLogin = CheckCollisionPointRec(mouse, loginBtn);
 
-    // Sign Up link
     int linkY = btnY + btnH + 24;
     const char* linkTxt = "Don't have an account?  Sign Up";
     int linkW = MeasureText(linkTxt, 14);
@@ -116,7 +114,6 @@ void Login::Draw()
     int userY = screenH / 2 - 70;
     int passY = userY + 70;
 
-    // Logo
     int logoY = userY - 130;
     DrawRectangle(screenW / 2 - 16, logoY, 32, 32, Palette::ACCENT);
     DrawText("C", screenW / 2 - 8, logoY + 6, 22, WHITE);
@@ -132,7 +129,6 @@ void Login::Draw()
     DrawField(boxX, userY, username, usernameActive, false, "Username");
     DrawField(boxX, passY, password, passwordActive, true,  "Password");
 
-    // Log In button
     int btnW = FIELD_W, btnH = 48;
     int btnX = boxX;
     int btnY = passY + 80;
@@ -150,7 +146,6 @@ void Login::Draw()
         DrawText(errorMsg.c_str(), screenW / 2 - errW / 2, btnY + btnH + 14, 13, Palette::ACCENT);
     }
 
-    // Sign Up link
     int linkY = btnY + btnH + 42;
     const char* linkTxt = "Don't have an account?  Sign Up";
     int linkW = MeasureText(linkTxt, 14);

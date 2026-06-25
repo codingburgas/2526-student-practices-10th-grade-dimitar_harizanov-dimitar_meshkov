@@ -33,7 +33,6 @@ int Booking::CountSelected() const
     return n;
 }
 
-
 void Booking::Update()
 {
     if (confirmed)
@@ -51,13 +50,11 @@ void Booking::Update()
     int     screenW = GetScreenWidth();
     int     screenH = GetScreenHeight();
 
-    // Back
     Rectangle backBtn = { 48.0f, (float)(NAVBAR_H + 24), 110.0f, 34.0f };
     hovBack = CheckCollisionPointRec(mouse, backBtn);
     if (hovBack && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         nextState = DETAIL;
 
-    // Date buttons 
     int colA = 48;
     int dateY = NAVBAR_H + 130;
     for (int i = 0; i < 3; i++)
@@ -67,7 +64,6 @@ void Booking::Update()
             selectedDate = i;
     }
 
-    // Time buttons
     int timeY = dateY + 84;
     for (int i = 0; i < 4; i++)
     {
@@ -76,7 +72,6 @@ void Booking::Update()
             selectedTime = i;
     }
 
-    // Seat grid
     int seatOX = colA;
     int seatOY = timeY + 92;
     for (int r = 0; r < ROWS; r++)
@@ -95,7 +90,6 @@ void Booking::Update()
         }
     }
 
-    // Confirm button
     int btnW = 240, btnH = 52;
     int btnX = screenW - btnW - 48;
     int btnY = screenH - 90;
@@ -110,7 +104,6 @@ void Booking::Update()
     if (IsKeyPressed(KEY_ESCAPE))
         nextState = DETAIL;
 }
-
 
 void Booking::Draw()
 {
@@ -149,7 +142,6 @@ void Booking::Draw()
         DrawRectangle(48, NAVBAR_H + 45, MeasureText("< Back", 17), 2,
             Palette::ACCENT);
 
-    // Page heading
     DrawText("Book Tickets", 48, NAVBAR_H + 72, 26, Palette::TEXT_HI);
     int htw = MeasureText("Book Tickets", 26);
     const char* filmNameStr = film.title.c_str();
@@ -158,7 +150,6 @@ void Booking::Draw()
     int colA = 48;
     int dateY = NAVBAR_H + 130;
 
-    // Date
     DrawText("DATE", colA, dateY - 20, 11, Palette::TEXT_DIM);
     for (int i = 0; i < 3; i++)
     {
@@ -171,7 +162,6 @@ void Booking::Draw()
         DrawText(DATES[i], dx + 64 - tw / 2, dateY + 13, 15, tc);
     }
 
-    // Time
     int timeY = dateY + 84;
     DrawText("SHOWTIME", colA, timeY - 20, 11, Palette::TEXT_DIM);
     for (int i = 0; i < 4; i++)
@@ -185,13 +175,11 @@ void Booking::Draw()
         DrawText(TIMES[i], tx + 59 - tw / 2, timeY + 13, 15, tc);
     }
 
-    // Seats
     int seatOX = colA;
     int seatOY = timeY + 92;
 
     DrawText("SELECT SEATS", seatOX, seatOY - 22, 11, Palette::TEXT_DIM);
 
-    // Screen bar
     int screenBarW = COLS * (SEAT_W + SEAT_GAP) - SEAT_GAP;
     DrawRectangle(seatOX, seatOY - 10, screenBarW, 3,
         { 200, 200, 220, 50 });
@@ -202,7 +190,7 @@ void Booking::Draw()
     Vector2 mouse = GetMousePosition();
     for (int r = 0; r < ROWS; r++)
     {
-        // Row label
+
         char rowLbl[3] = { (char)('A' + r), '\0' };
         DrawText(rowLbl, seatOX - 22,
             seatOY + r * (SEAT_H + SEAT_GAP) + SEAT_H / 2 - 7,
@@ -229,7 +217,6 @@ void Booking::Draw()
         }
     }
 
-    // Legend
     int legY = seatOY + ROWS * (SEAT_H + SEAT_GAP) + 14;
     DrawRectangle(seatOX, legY, 14, 14, Palette::CARD);
     DrawText("Available", seatOX + 20, legY, 12, Palette::TEXT_DIM);
@@ -269,7 +256,6 @@ void Booking::Draw()
         CountSelected() * TICKET_PRICE);
     DrawText(totalStr, sumX + 16, sumY + 172, 20, Palette::TEXT_HI);
 
-    //Confirm button
     int btnW = 240, btnH = 52;
     int btnX = screenW - btnW - 48;
     int btnY = screenH - 90;

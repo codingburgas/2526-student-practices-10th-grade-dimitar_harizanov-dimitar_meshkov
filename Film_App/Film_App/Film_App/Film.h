@@ -7,8 +7,7 @@ struct Film {
     string description;
     string genre;
     string director;
-    string duration;    
-    float  rating;       
-    Color  posterColor;  
+    string duration;
+    float  rating;
+    Color  posterColor;
 };
-     

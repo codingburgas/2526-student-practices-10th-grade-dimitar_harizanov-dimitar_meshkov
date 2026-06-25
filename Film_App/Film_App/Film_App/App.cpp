@@ -2,7 +2,7 @@
 #include "FilmCatalogue.h"
 
 App::App()
-    : state(MENU),   // start on the menu; auth is only required when booking
+    : state(MENU),
     login(nullptr), signup(nullptr), authPrompt(nullptr),
     menu(nullptr), detail(nullptr), booking(nullptr),
     selectedFilmIdx(-1)
@@ -92,7 +92,7 @@ void App::Draw()
     case LOGIN:       login->Draw();   break;
     case SIGNUP:      signup->Draw();  break;
     case AUTH_PROMPT:
-        // Render the film detail page underneath, then the modal overlay on top
+
         detail->Draw();
         authPrompt->Draw();
         break;
@@ -107,7 +107,6 @@ void App::HandleStateChange(Appstate newState)
 {
     if (newState == state) return;
 
-    // MENU -> DETAIL: remember which film was selected
     if (newState == DETAIL && state == MENU)
     {
         selectedFilmIdx = menu->GetSelectedFilm();
@@ -117,14 +116,12 @@ void App::HandleStateChange(Appstate newState)
         return;
     }
 
-    // DETAIL "Book Now" click -> show auth prompt instead of going straight to booking
     if (newState == BOOKING && state == DETAIL)
     {
         state = AUTH_PROMPT;
         return;
     }
 
-    // LOGIN -> MENU (after successful login): proceed to booking now that user is authenticated
     if (newState == MENU && state == LOGIN)
     {
         login->Reset();
@@ -134,7 +131,6 @@ void App::HandleStateChange(Appstate newState)
         return;
     }
 
-    // SIGNUP -> MENU (after successful sign-up): proceed to booking
     if (newState == MENU && state == SIGNUP)
     {
         if (selectedFilmIdx >= 0 && selectedFilmIdx < (int)catalogue.size())
@@ -143,10 +139,5 @@ void App::HandleStateChange(Appstate newState)
         return;
     }
 
-    // AUTH_PROMPT dismissed (ESC / click outside / X) -> back to detail
-    // AUTH_PROMPT -> LOGIN / SIGNUP handled by normal state transition below
-
-    // BOOKING -> MENU (after booking confirmed or back pressed to menu)
-    // All other transitions fall through to the simple assignment
     state = newState;
 }
