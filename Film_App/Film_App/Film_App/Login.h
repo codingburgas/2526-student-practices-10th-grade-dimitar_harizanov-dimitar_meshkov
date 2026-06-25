@@ -22,6 +22,7 @@ private:
     bool   hovLogin;
     bool   hovSignup;   // "Sign up" link
     bool   showError;
+    string errorMsg;
 
     Appstate nextState;
 

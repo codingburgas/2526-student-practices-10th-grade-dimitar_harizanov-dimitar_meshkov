@@ -1,4 +1,5 @@
 #include "Login.h"
+#include "UserStore.h"
 using namespace std;
 
 Login::Login()
@@ -16,6 +17,7 @@ void Login::Reset()
     hovLogin  = false;
     hovSignup = false;
     showError = false;
+    errorMsg  = "";
     nextState = LOGIN;
 }
 
@@ -83,11 +85,18 @@ void Login::Update()
     bool pressedEnter = IsKeyPressed(KEY_ENTER);
     if ((hovLogin && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) || pressedEnter)
     {
-        if (!username.empty() && !password.empty()) {
+        if (username.empty() || password.empty()) {
+            showError = true;
+            errorMsg  = "Please enter a username and password";
+        } else if (!UserStore::UserExists(username)) {
+            showError = true;
+            errorMsg  = "An account with this username doesn't exist";
+        } else if (!UserStore::VerifyCredentials(username, password)) {
+            showError = true;
+            errorMsg  = "Incorrect password";
+        } else {
             showError = false;
             nextState = MENU;
-        } else {
-            showError = true;
         }
     }
 
@@ -137,9 +146,8 @@ void Login::Draw()
 
     if (showError)
     {
-        const char* err = "Please enter a username and password";
-        int         errW = MeasureText(err, 13);
-        DrawText(err, screenW / 2 - errW / 2, btnY + btnH + 14, 13, Palette::ACCENT);
+        int         errW = MeasureText(errorMsg.c_str(), 13);
+        DrawText(errorMsg.c_str(), screenW / 2 - errW / 2, btnY + btnH + 14, 13, Palette::ACCENT);
     }
 
     // Sign Up link

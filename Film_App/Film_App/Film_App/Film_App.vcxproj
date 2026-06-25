@@ -129,6 +129,7 @@
     <ClCompile Include="AuthPrompt.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Signup.cpp" />
+    <ClCompile Include="UserStore.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
   </ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="AuthPrompt.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="Signup.h" />
+    <ClInclude Include="UserStore.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

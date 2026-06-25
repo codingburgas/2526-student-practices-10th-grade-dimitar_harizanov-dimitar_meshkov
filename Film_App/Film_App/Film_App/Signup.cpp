@@ -1,4 +1,5 @@
 #include "Signup.h"
+#include "UserStore.h"
 using namespace std;
 
 Signup::Signup()
@@ -77,7 +78,11 @@ void Signup::Update()
         } else if (password != confirmPassword) {
             showError = true;
             errorMsg = "Passwords do not match";
+        } else if (UserStore::UserExists(username)) {
+            showError = true;
+            errorMsg = "An account with this username already exists";
         } else {
+            UserStore::CreateUser(username, password);
             showError = false;
             nextState = MENU;
         }
