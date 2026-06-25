@@ -4,11 +4,10 @@
 #include "utils.h"
 using namespace std;
 
-class Login {
+class Signup {
 public:
-    Login();
+    Signup();
 
-    void Reset();
     void Update();
     void Draw();
 
@@ -17,11 +16,15 @@ public:
 private:
     string username;
     string password;
+    string confirmPassword;
+
     bool   usernameActive;
     bool   passwordActive;
-    bool   hovLogin;
-    bool   hovSignup;   // "Sign up" link
+    bool   confirmActive;
+    bool   hovSignup;
+    bool   hovLogin;    // "Already have an account?" link
     bool   showError;
+    string errorMsg;
 
     Appstate nextState;
 

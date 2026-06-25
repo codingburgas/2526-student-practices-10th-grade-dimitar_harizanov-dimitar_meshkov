@@ -3,6 +3,8 @@
 #include <raylib.h>
 #include "utils.h"
 #include "Login.h"
+#include "Signup.h"
+#include "AuthPrompt.h"
 #include "Menu.h"
 #include "Detail.h"
 #include "Booking.h"
@@ -13,15 +15,17 @@ public:
     App();
     ~App();
 
-    void Display();   
-    void Update();    
-    void Draw();     
+    void Display();
+    void Update();
+    void Draw();
 private:
     Appstate state;
-    Login* login;
-    Menu* menu;
-    Detail* detail;
-    Booking* booking;
+    Login*      login;
+    Signup*     signup;
+    AuthPrompt* authPrompt;
+    Menu*       menu;
+    Detail*     detail;
+    Booking*    booking;
     vector<Film> catalogue;
     int selectedFilmIdx;
 
